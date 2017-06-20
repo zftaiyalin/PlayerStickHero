@@ -12,7 +12,7 @@
         <!--Game View Controller-->
         <scene sceneID="tXr-a1-R10">
             <objects>
-                <viewController id="BV1-FR-VrT" customClass="GameViewController" customModule="Stick_Hero" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StickHeroBoard" id="BV1-FR-VrT" customClass="GameViewController" customModule="PlayerStickHero" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8aa-yV-Osq"/>
                         <viewControllerLayoutGuide type="bottom" id="qHh-Mt-9TT"/>
