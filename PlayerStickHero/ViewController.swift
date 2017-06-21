@@ -7,22 +7,36 @@
 //
 
 import UIKit
-import SnapKit
+
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.view.backgroundColor = UIColor.green
+        self.view.backgroundColor = UIColor.white
+        
+        let image = UIImageView()
+        image.image = UIImage.init(named: "stick_background.jpg")
+        self.view.addSubview(image)
+        
+        image.snp.makeConstraints { (make) in
+            make.edges.equalTo(self.view)
+        }
         
         let button = UIButton()
-        button.setTitle("开始游戏", for: .normal)
         button.backgroundColor = UIColor.white
         button.layer.cornerRadius = 8
-        button.frame = CGRect.init(x: 0, y: 0, width: 100, height: 60)
         button.addTarget(self, action: #selector(pushGame), for: .touchUpInside)
         self.view.addSubview(button)
+        
+        button.snp.makeConstraints { (make) in
+            make.centerX.equalTo(self.view)
+            make.size.equalTo(CGSize.init(width: 120, height: 60))
+            make.bottom.equalTo(self.view).offset(-200)
+        }
+        
+  
         
     }
     
