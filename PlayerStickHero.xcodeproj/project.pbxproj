@@ -33,6 +33,7 @@
 		6BB08B781EF95FEF0036882A /* StickHeroGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB08B741EF95FEF0036882A /* StickHeroGameScene.swift */; };
 		6BB08B791EF95FEF0036882A /* Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB08B751EF95FEF0036882A /* Tools.swift */; };
 		6BB08B7B1EF964530036882A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BB08B7A1EF964530036882A /* Main.storyboard */; };
+		B45A9D0C62FB7D380CE5BEFD /* Pods_PlayerStickHero.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CCFA78712038EEE42B94733 /* Pods_PlayerStickHero.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		465F31237D7C0014F47D1E59 /* Pods-PlayerStickHero.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlayerStickHero.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PlayerStickHero/Pods-PlayerStickHero.debug.xcconfig"; sourceTree = "<group>"; };
+		5CCFA78712038EEE42B94733 /* Pods_PlayerStickHero.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PlayerStickHero.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5D21DCAD058F771AB210373C /* Pods-PlayerStickHero.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlayerStickHero.release.xcconfig"; path = "Pods/Target Support Files/Pods-PlayerStickHero/Pods-PlayerStickHero.release.xcconfig"; sourceTree = "<group>"; };
+		6B64A6C21EFA503F00A18794 /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		6BB08B1F1EF95FA30036882A /* PlayerStickHero.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlayerStickHero.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BB08B221EF95FA30036882A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6BB08B241EF95FA30036882A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -92,6 +97,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B45A9D0C62FB7D380CE5BEFD /* Pods_PlayerStickHero.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +118,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2D0FE7C23F41A11B69E43BE4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				465F31237D7C0014F47D1E59 /* Pods-PlayerStickHero.debug.xcconfig */,
+				5D21DCAD058F771AB210373C /* Pods-PlayerStickHero.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		6BB08B161EF95FA30036882A = {
 			isa = PBXGroup;
 			children = (
@@ -119,6 +134,8 @@
 				6BB08B361EF95FA30036882A /* PlayerStickHeroTests */,
 				6BB08B411EF95FA30036882A /* PlayerStickHeroUITests */,
 				6BB08B201EF95FA30036882A /* Products */,
+				2D0FE7C23F41A11B69E43BE4 /* Pods */,
+				F9BC3B7555B72C5EA065873C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -145,6 +162,7 @@
 				6BB08B291EF95FA30036882A /* Assets.xcassets */,
 				6BB08B2B1EF95FA30036882A /* LaunchScreen.storyboard */,
 				6BB08B2E1EF95FA30036882A /* Info.plist */,
+				6B64A6C21EFA503F00A18794 /* Header.h */,
 			);
 			path = PlayerStickHero;
 			sourceTree = "<group>";
@@ -214,6 +232,14 @@
 			path = Sound;
 			sourceTree = "<group>";
 		};
+		F9BC3B7555B72C5EA065873C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5CCFA78712038EEE42B94733 /* Pods_PlayerStickHero.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -221,9 +247,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6BB08B471EF95FA30036882A /* Build configuration list for PBXNativeTarget "PlayerStickHero" */;
 			buildPhases = (
+				0D309100B5E41E754A478B6C /* [CP] Check Pods Manifest.lock */,
 				6BB08B1B1EF95FA30036882A /* Sources */,
 				6BB08B1C1EF95FA30036882A /* Frameworks */,
 				6BB08B1D1EF95FA30036882A /* Resources */,
+				3282B498E93C258C167E844F /* [CP] Embed Pods Frameworks */,
+				F06473CDEB5DFCFC551F62BF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -358,6 +387,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0D309100B5E41E754A478B6C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		3282B498E93C258C167E844F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PlayerStickHero/Pods-PlayerStickHero-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F06473CDEB5DFCFC551F62BF /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PlayerStickHero/Pods-PlayerStickHero-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6BB08B1B1EF95FA30036882A /* Sources */ = {
@@ -511,6 +588,7 @@
 		};
 		6BB08B481EF95FA30036882A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 465F31237D7C0014F47D1E59 /* Pods-PlayerStickHero.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = WD9BF79VSR;
@@ -519,12 +597,14 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.anfeng.StickHero;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = Header.h;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		6BB08B491EF95FA30036882A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5D21DCAD058F771AB210373C /* Pods-PlayerStickHero.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = WD9BF79VSR;
@@ -533,6 +613,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.anfeng.StickHero;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = Header.h;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -610,6 +691,7 @@
 				6BB08B491EF95FA30036882A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6BB08B4A1EF95FA30036882A /* Build configuration list for PBXNativeTarget "PlayerStickHeroTests" */ = {
 			isa = XCConfigurationList;
@@ -618,6 +700,7 @@
 				6BB08B4C1EF95FA30036882A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6BB08B4D1EF95FA30036882A /* Build configuration list for PBXNativeTarget "PlayerStickHeroUITests" */ = {
 			isa = XCConfigurationList;
@@ -626,6 +709,7 @@
 				6BB08B4F1EF95FA30036882A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

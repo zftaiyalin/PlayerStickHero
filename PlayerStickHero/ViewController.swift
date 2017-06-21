@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import SnapKit
 
 class ViewController: UIViewController {
 
@@ -23,6 +23,8 @@ class ViewController: UIViewController {
         button.frame = CGRect.init(x: 0, y: 0, width: 100, height: 60)
         button.addTarget(self, action: #selector(pushGame), for: .touchUpInside)
         self.view.addSubview(button)
+        
+//        button.snp.m
         
     }
     
