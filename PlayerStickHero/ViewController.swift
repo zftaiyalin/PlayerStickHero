@@ -24,8 +24,6 @@ class ViewController: UIViewController {
         button.addTarget(self, action: #selector(pushGame), for: .touchUpInside)
         self.view.addSubview(button)
         
-//        button.snp.m
-        
     }
     
     func pushGame() {
