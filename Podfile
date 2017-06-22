@@ -1,13 +1,11 @@
-workspace 'PlayerStickHero'
-xcodeproj 'PlayerStickHero.xcodeproj'
+platform :ios, ‘8.0’
+
 target 'PlayerStickHero' do
-    use_frameworks!
-    platform :ios, ‘8.0’
-    pod 'SVProgressHUD'
-    pod 'SnapKit'
-    pod 'ObjectMapper'
-    pod 'Reachability'
-    pod 'YYCategories'
-    pod 'YYModel'
-    pod 'UMengAnalytics'
+use_frameworks!
+pod 'Reachability'
+pod 'YYCategories'
+pod 'YYModel'
+pod 'UMengAnalytics'
+pod 'SnapKit'
+pod 'SVProgressHUD'
 end

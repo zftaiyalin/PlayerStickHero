@@ -1,5 +1,4 @@
 PODS:
-  - ObjectMapper (2.2.6)
   - Reachability (3.2)
   - SnapKit (3.2.0)
   - SVProgressHUD (2.1.2)
@@ -10,7 +9,6 @@ PODS:
   - YYModel (1.0.4)
 
 DEPENDENCIES:
-  - ObjectMapper
   - Reachability
   - SnapKit
   - SVProgressHUD
@@ -19,7 +17,6 @@ DEPENDENCIES:
   - YYModel
 
 SPEC CHECKSUMS:
-  ObjectMapper: 042708195cc46c20871cbcbec0453826398273fd
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
   SVProgressHUD: c404a55d78acbeb7ebb78b76d3faf986475a6994
@@ -27,6 +24,6 @@ SPEC CHECKSUMS:
   YYCategories: 6bcd4314c6661a561410dce4a793379ebd306abd
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 
-PODFILE CHECKSUM: 4929595dff557957640a2c727778defced081cb3
+PODFILE CHECKSUM: dd80f57377114ac0f39b322beb6680402aa32985
 
 COCOAPODS: 1.2.0

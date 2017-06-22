@@ -4,11 +4,6 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>ObjectMapper.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Pods-PlayerStickHero.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -42,37 +37,32 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>26620CA7800CF7A2CA0AFF38D13FC10B</key>
+		<key>9958867F7AB6DDD9D044FEAC92F299CD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>403DA99506C67F887E7D05B17762D350</key>
+		<key>ADF8E9113A23F41D86DABC0C32B97520</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>51A5C1A4836C760BE78B3F9C64AB4FFB</key>
+		<key>D38393ADF6C5E55475955A7BCAB81B1F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5B02D6A6FE60AE4400E3FDEDCEC6ED89</key>
+		<key>F139319A3BC196A171360C63BCA77761</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8389CCEAE8485DABFB585682A4C725B9</key>
+		<key>F37B80A91EA00436560AD42E58AAC53A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CD6C9FB6B052E1CF663F8A56041EA163</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>D1C92FE0EBD73AC5B71DECBB62605E67</key>
+		<key>F54C01B376B7FF403FEE48799BBC337E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
