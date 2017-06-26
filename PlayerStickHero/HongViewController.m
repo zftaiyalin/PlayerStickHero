@@ -90,8 +90,10 @@
 -(void)reFreshVideoModel{
     [tableAry removeAllObjects];
     isLoad = NO;
+    
+    AppModel *model = [AppUnitl sharedManager].ssmodel;
     for (int i = 0;i<10; i++ ) {
-        [tableAry appendObject:[AppUnitl sharedManager].ssmodel.videoVex.videoArray[i]];
+        [tableAry appendObject:model.videoVex.videoArray[i]];
     }
     [self.tableView.mj_header endRefreshing];
     [self.tableView.mj_footer endRefreshing];
@@ -169,10 +171,13 @@
     VideoPlayModel *model = [tableAry objectAtIndex:indexPath.row];
     if (model.videoUrl.length > 0) {
             MoviePlayerViewController *movie = [[MoviePlayerViewController alloc]init];
-            movie.videoURL                   = model.videoUrl;
+            movie.videoURL                   = [[NSURL alloc] initWithString:model.videoUrl];
             movie.titleSring = model.videoTitle;
             movie.isShowCollect = NO;
-            [self.navigationController pushViewController:movie animated:NO];
+//            [self.navigationController pushViewController:movie animated:NO];
+        [self presentViewController:movie animated:YES completion:^{
+            
+        }];
     }else{
     
     }

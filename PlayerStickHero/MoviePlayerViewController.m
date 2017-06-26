@@ -115,7 +115,9 @@
 #pragma mark - ZFPlayerDelegate
 
 - (void)zf_playerBackAction {
-    [self.navigationController popViewControllerAnimated:NO];
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
 }
 
 

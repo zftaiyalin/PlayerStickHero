@@ -26,7 +26,7 @@ class ViewController: UIViewController {
         
         
         let icon = UIImageView()
-        icon.backgroundColor = UIColor.gray
+        icon.image = UIImage.init(named: "icon-83.5.png")
         self.view.addSubview(icon)
         
         icon.snp.makeConstraints { (make) in
