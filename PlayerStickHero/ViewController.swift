@@ -24,20 +24,54 @@ class ViewController: UIViewController {
             make.edges.equalTo(self.view)
         }
         
+        
+        let icon = UIImageView()
+        icon.backgroundColor = UIColor.gray
+        self.view.addSubview(icon)
+        
+        icon.snp.makeConstraints { (make) in
+            make.centerX.equalTo(self.view)
+            make.size.equalTo(CGSize.init(width: 120, height: 120))
+            make.top.equalTo(self.view.snp.centerY).offset(-100)
+        }
+        
         let button = UIButton()
-        button.backgroundColor = UIColor.white
-        button.layer.cornerRadius = 8
+        button.backgroundColor = UIColor.init(hexString: "#FF4040")
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.layer.cornerRadius = 7
+        button.setTitle("Enter", for: .normal)
         button.addTarget(self, action: #selector(pushGame), for: .touchUpInside)
         self.view.addSubview(button)
         
         button.snp.makeConstraints { (make) in
             make.centerX.equalTo(self.view)
-            make.size.equalTo(CGSize.init(width: 120, height: 60))
-            make.bottom.equalTo(self.view).offset(-200)
+            make.size.equalTo(CGSize.init(width: 110, height: 40))
+            make.top.equalTo(icon.snp.bottom).offset(30)
         }
         
+        if !Aplication.shareInstance.model.isShow {
+            let lbutton = UIButton()
+            lbutton.backgroundColor = UIColor.init(hexString: "#FF4040")
+            lbutton.setTitleColor(UIColor.white, for: .normal)
+            lbutton.layer.cornerRadius = 7
+            lbutton.setTitle("老司机专区", for: .normal)
+            lbutton.addTarget(self, action: #selector(pushLao), for: .touchUpInside)
+            self.view.addSubview(lbutton)
+            
+            lbutton.snp.makeConstraints { (make) in
+                make.centerX.equalTo(self.view)
+                make.size.equalTo(CGSize.init(width: 110, height: 40))
+                make.top.equalTo(button.snp.bottom).offset(20)
+            }
+        }
   
         
+    }
+    
+    func pushLao() {
+        self.present(HongViewController(), animated: false) {
+            
+        }
     }
     
     func pushGame() {
@@ -45,7 +79,7 @@ class ViewController: UIViewController {
         let mainStoryboard = UIStoryboard.init(name: "Main", bundle: nil)
         //将取出的storyboard里面的控制器被所需的控制器指着。
         let vc = mainStoryboard.instantiateViewController(withIdentifier: "StickHeroBoard")
-        self.present(vc, animated: true) { 
+        self.present(vc, animated: false) {
             
         }
         

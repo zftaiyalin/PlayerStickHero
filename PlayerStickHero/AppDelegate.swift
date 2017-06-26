@@ -17,6 +17,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        UMAnalyticsConfig.sharedInstance().appKey = "592bbcf63eae25316d00206e"
+        UMAnalyticsConfig.sharedInstance().channelId = "App Store"
+        MobClick.start(withConfigure: UMAnalyticsConfig.sharedInstance())
+        
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyyMMddHHmmss"
+        let currentDateString = dateFormatter.string(from: Date.init())
+        let ss = "http://opmams01o.bkt.clouddn.com/redbox.json?v=" + currentDateString
+        let xcfURL = URL.init(string: ss)
+        
+        var content:String!
+        do {
+            content = try String(contentsOf:xcfURL!)
+        }
+        catch let error {
+            // Error handling
+            print(error)
+        }
+        if content != nil {
+            let model = RedBoxModel.yy_model(withJSON: content)
+//            print(model?.alertText!)
+            Aplication.shareInstance.model = model!
+        }
+        
+        
+        
         self.window = UIWindow.init(frame: UIScreen.main.bounds)
 
         self.window?.rootViewController = ViewController();

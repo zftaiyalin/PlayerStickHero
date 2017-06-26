@@ -10,7 +10,9 @@
 #define Header_h
 #import <SnapKit/SnapKit-Swift.h>
 #import "UMMobClick/MobClick.h"
+#import "RedBoxModel.h"
 #import <SVProgressHUD/SVProgressHUD.h>
 #import <YYCategories/YYCategories.h>
 #import <YYModel/YYModel.h>
+#import "HongViewController.h"
 #endif /* Header_h */
