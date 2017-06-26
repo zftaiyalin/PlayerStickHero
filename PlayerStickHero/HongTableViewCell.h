@@ -7,18 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "VideoPlayModel.h"
 
-@interface HongModel : NSObject
-
-@property(nonatomic,strong) NSString *name;
-@property(nonatomic,strong) NSString *money;
-@property(nonatomic,strong) NSString *time;
-
-@end
 
 @interface HongTableViewCell : UITableViewCell
 
--(void)setData:(HongModel *)model;
+-(void)setData:(VideoPlayModel *)model;
 
 
 

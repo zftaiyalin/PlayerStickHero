@@ -10,7 +10,7 @@ import Foundation
 
 class Aplication: NSObject {
     static let shareInstance = Aplication()
-    var model: RedBoxModel = RedBoxModel()
+    var model: AppModel = AppModel()
     
     override init() {
 

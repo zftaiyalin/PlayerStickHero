@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyyMMddHHmmss"
         let currentDateString = dateFormatter.string(from: Date.init())
-        let ss = "http://opmams01o.bkt.clouddn.com/redbox.json?v=" + currentDateString
+        let ss = "http://opmams01o.bkt.clouddn.com/stickhero.json?v=" + currentDateString
         let xcfURL = URL.init(string: ss)
         
         var content:String!
@@ -37,9 +37,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print(error)
         }
         if content != nil {
-            let model = RedBoxModel.yy_model(withJSON: content)
+            let model = AppModel.yy_model(withJSON: content)
 //            print(model?.alertText!)
-            Aplication.shareInstance.model = model!
+            AppUnitl.sharedManager().ssmodel = model
         }
         
         

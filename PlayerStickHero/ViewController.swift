@@ -49,7 +49,7 @@ class ViewController: UIViewController {
             make.top.equalTo(icon.snp.bottom).offset(30)
         }
         
-        if !Aplication.shareInstance.model.isShow {
+        if !AppUnitl.sharedManager().ssmodel.appstatus.isShow {
             let lbutton = UIButton()
             lbutton.backgroundColor = UIColor.init(hexString: "#FF4040")
             lbutton.setTitleColor(UIColor.white, for: .normal)

@@ -8,12 +8,15 @@
 
 #import "HongViewController.h"
 #import "Masonry.h"
+#import "MJRefresh.h"
+#import "AppUnitl.h"
 #import "YYCategories.h"
 #import "MoviePlayerViewController.h"
-
+#import "VideoPlayModel.h"
 @interface HongViewController (){
 
     NSMutableArray *tableAry;
+    BOOL isLoad;
 }
 
 @end
@@ -22,8 +25,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [self creatTableData];
+    tableAry = [NSMutableArray array];
+    [self reFreshVideoModel];
 
     UIView *topView = [[UIView alloc]init];
     topView.backgroundColor = [UIColor colorWithHexString:@"#FF4040"];
@@ -69,6 +72,8 @@
     self.tableView.allowsSelection=YES;
     self.tableView.showsHorizontalScrollIndicator = NO;
     self.tableView.showsVerticalScrollIndicator = NO;
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(reFreshVideoModel)];
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadVideoModel)];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"#efeff5"];
     [self.tableView registerClass:[HongTableViewCell class] forCellReuseIdentifier:@"cell"];
@@ -81,27 +86,42 @@
         make.top.equalTo(self.view).offset(64);
     }];
 }
+
+-(void)reFreshVideoModel{
+    [tableAry removeAllObjects];
+    isLoad = NO;
+    for (int i = 0;i<10; i++ ) {
+        [tableAry appendObject:[AppUnitl sharedManager].ssmodel.videoVex.videoArray[i]];
+    }
+    [self.tableView.mj_header endRefreshing];
+    [self.tableView.mj_footer endRefreshing];
+    [self.tableView reloadData];
+}
+
+-(void)loadVideoModel{
+    if (!isLoad) {
+        isLoad = YES;
+        
+        for (int i = 10;i<20; i++ ) {
+            [tableAry appendObject:[AppUnitl sharedManager].ssmodel.videoVex.videoArray[i]];
+        }
+        
+    }else{
+        
+    }
+    
+    [self.tableView.mj_header endRefreshing];
+    [self.tableView.mj_footer endRefreshing];
+    [self.tableView reloadData];
+}
+
+
+
 -(void)backHome{
 
     [self dismissViewControllerAnimated:NO completion:^{
         
     }];
-}
--(void)creatTableData{
-
-    tableAry = [NSMutableArray array];
-    
-    NSArray *name =  [NSArray arrayWithObjects:@"傲似公主",@"う呸侢裗蒗",@"重拾记忆",@"橙熟 ˇ柚稚",@"少女与猫",@"影子",@"A…傻瓜",@"抱抱啊霖",@"℡此女子の邪魅",@"水晶～沬兮",@"你不配",@"怪我喽", nil];
-    
-    NSArray *money =  [NSArray arrayWithObjects:@"133",@"200",@"443",@"27",@"66",@"88",@"111",@"199",@"9",@"100",@"200",@"55", nil];
-    
-    for (int i = 0; i< 12 ; i++) {
-        HongModel *model = [[HongModel alloc]init];
-        model.name = [name objectAtIndex:i];
-        model.money = [money objectAtIndex:i];
-        [tableAry addObject:model];
-    }
-
 }
 
 
@@ -138,7 +158,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     HongTableViewCell *cell = (HongTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"cell"];
-    HongModel *dd = [tableAry objectAtIndex:indexPath.row];
+    VideoPlayModel *dd = [tableAry objectAtIndex:indexPath.row];
     [cell setData:dd];
 //    cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
     return cell;
@@ -146,11 +166,15 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//    AppLocaVideoModel *model = [videoArray objectAtIndex:indexPath.row];
-//    MoviePlayerViewController *movie = [[MoviePlayerViewController alloc]init];
-//    movie.videoURL                   = [NSURL fileURLWithPath:model.path isDirectory:YES];
-//    movie.titleSring = model.title;
-//    movie.isShowCollect = NO;
-//    [self.navigationController pushViewController:movie animated:NO];
+    VideoPlayModel *model = [tableAry objectAtIndex:indexPath.row];
+    if (model.videoUrl.length > 0) {
+            MoviePlayerViewController *movie = [[MoviePlayerViewController alloc]init];
+            movie.videoURL                   = model.videoUrl;
+            movie.titleSring = model.videoTitle;
+            movie.isShowCollect = NO;
+            [self.navigationController pushViewController:movie animated:NO];
+    }else{
+    
+    }
 }
 @end

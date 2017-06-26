@@ -11,7 +11,6 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import "ZFPlayer.h"
 #import "Masonry.h"
-#import "UINavigationController+ZFFullscreenPopGesture.h"
 
 @interface MoviePlayerViewController ()<ZFPlayerDelegate>
 

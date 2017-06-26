@@ -10,15 +10,13 @@
 #import "Masonry.h"
 #import "YYCategories.h"
 
-@implementation HongModel
-
-@end
 
 @implementation HongTableViewCell{
 
     UILabel *titleLabel;
     UILabel *timeLabel;
     UILabel *sizeLabel;
+    UILabel *kanLabel;
 }
 
 - (void)awakeFromNib {
@@ -40,7 +38,7 @@
         
         titleLabel = [[UILabel alloc]init];
         titleLabel.font = [UIFont systemFontOfSize:15];
-        titleLabel.textColor = [UIColor blackColor];
+        titleLabel.textColor = [UIColor colorWithHexString:@"#63B8FF"];
         [self.contentView addSubview:titleLabel];
         
         [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -50,7 +48,7 @@
         }];
         
         timeLabel = [[UILabel alloc]init];
-        timeLabel.textColor = [UIColor colorWithHexString:@"#aaaaaa"];
+        timeLabel.textColor = [UIColor colorWithHexString:@"#63B8FF"];
         timeLabel.font = [UIFont systemFontOfSize:13];
         [self.contentView addSubview:timeLabel];
         
@@ -62,32 +60,53 @@
         
         
         sizeLabel = [[UILabel alloc]init];
-        sizeLabel.textColor = [UIColor blackColor];
-        sizeLabel.font = [UIFont systemFontOfSize:15];
-        sizeLabel.textAlignment = NSTextAlignmentRight;
+        sizeLabel.textColor = [UIColor colorWithHexString:@"#63B8FF"];
+        sizeLabel.font = [UIFont systemFontOfSize:13];
         [self.contentView addSubview:sizeLabel];
         
         [sizeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.equalTo(titleLabel).offset(-4);
-            make.right.equalTo(self.contentView).offset(-20);
-            make.height.mas_equalTo(20);
+            make.top.equalTo(titleLabel.mas_bottom).offset(5);
+            make.left.equalTo(timeLabel.mas_right).offset(13);
+            make.height.mas_equalTo(15);
         }];
         
-//        UIView *line = [[UIView alloc]init];
-//        line.backgroundColor = [UIColor colorWithHexString:@"#515151"];
-//        [self.contentView addSubview:line];
-//        
-//        [line mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.left.and.bottom.and.right.equalTo(self.contentView);
-//            make.height.mas_equalTo(0.5);
-//        }];
+        UILabel *zeLabel = [[UILabel alloc]init];
+        zeLabel.textColor = [UIColor colorWithHexString:@"#63B8FF"];
+        zeLabel.font = [UIFont systemFontOfSize:13];
+        zeLabel.text = @"源1";
+        [self.contentView addSubview:zeLabel];
+        
+        [zeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(titleLabel.mas_bottom).offset(5);
+            make.left.equalTo(sizeLabel.mas_right).offset(13);
+            make.height.mas_equalTo(15);
+        }];
+        
+        kanLabel = [[UILabel alloc]init];
+        kanLabel.textColor = [UIColor colorWithHexString:@"#FF4040"];
+        kanLabel.font = [UIFont systemFontOfSize:13];
+        kanLabel.text = @"[免费试看]";
+        [self.contentView addSubview:kanLabel];
+        
+        [kanLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(titleLabel.mas_bottom).offset(5);
+            make.left.equalTo(zeLabel.mas_right).offset(13);
+            make.height.mas_equalTo(15);
+        }];
+        
+
     }
     return self;
 }
 
--(void)setData:(HongModel *)model{
-    titleLabel.text = model.name;
-    timeLabel.text = @"08-10";
-    sizeLabel.text = [NSString stringWithFormat:@"%@.00元",model.money];
+-(void)setData:(VideoPlayModel *)model{
+    NSString *time = [NSString stringWithFormat:@"时长:%@",model.videotime];
+    NSString *size = [NSString stringWithFormat:@"大小:%@",model.videoSize];
+    titleLabel.text = model.videoTitle;
+    timeLabel.text = time;
+    sizeLabel.text = size;
+    kanLabel.hidden = model.videoUrl.length > 0 ? NO:YES;
+    
+    
 }
 @end
