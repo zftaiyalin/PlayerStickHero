@@ -31,6 +31,7 @@
 @optional
 /** 返回按钮事件 */
 - (void)zf_playerBackAction;
+- (void)zf_playerAlertShow;
 /** 下载视频 */
 - (void)zf_playerDownload:(NSString *)url;
 /** 控制层即将显示 */

@@ -223,7 +223,9 @@ typedef NS_ENUM(NSInteger, PanDirection){
     if (!controlView) {
         // 指定默认控制层
         ZFPlayerControlView *defaultControlView = [[ZFPlayerControlView alloc] init];
+        defaultControlView.viModel = playerModel;
         self.controlView = defaultControlView;
+        
     } else {
         self.controlView = controlView;
     }
@@ -1454,6 +1456,13 @@ typedef NS_ENUM(NSInteger, PanDirection){
     if (!self.isAutoPlay) {
         self.isAutoPlay = YES;
         [self configZFPlayer];
+    }
+}
+
+-(void)zf_controlViewAlertShow{
+    [self.player pause];
+    if ([self.delegate respondsToSelector:@selector(zf_playerAlertShow)]) {
+        [self.delegate zf_playerAlertShow];
     }
 }
 

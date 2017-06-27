@@ -30,6 +30,8 @@
 @protocol ZFPlayerControlViewDelagate <NSObject>
 
 @optional
+/** 下载按钮事件 */
+- (void)zf_controlViewAlertShow;
 /** 返回按钮事件 */
 - (void)zf_controlView:(UIView *)controlView backAction:(UIButton *)sender;
 /** cell播放中小屏状态 关闭按钮事件 */

@@ -39,14 +39,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if content != nil {
             let model = AppModel.yy_model(withJSON: content)
 //            print(model?.alertText!)
+            model?.appstatus.isShow = true
             AppUnitl.sharedManager().ssmodel = model
+            
         }
         
-        
+        let na = UINavigationController.init(rootViewController: ViewController())
+        na.navigationBar.barTintColor = UIColor.init(hexString: "#FF4040")
         
         self.window = UIWindow.init(frame: UIScreen.main.bounds)
 
-        self.window?.rootViewController = ViewController();
+        self.window?.rootViewController = na;
 
         self.window?.makeKeyAndVisible()
         

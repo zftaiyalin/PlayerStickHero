@@ -11,6 +11,7 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import "ZFPlayer.h"
 #import "Masonry.h"
+#import "UIViewController+Add.h"
 
 @interface MoviePlayerViewController ()<ZFPlayerDelegate>
 
@@ -21,7 +22,6 @@
 @property (nonatomic, strong) ZFPlayerModel *playerModel;
 @property (nonatomic, strong) UIView *bottomView;
 @property(nonatomic,strong)UIWebView *webView;
-//@property (strong, nonatomic) UIButton *backBtn;
 
 @end
 
@@ -35,30 +35,11 @@
     [super viewWillAppear:animated];
     // pop回来时候是否自动播放
 
-    if (self.navigationController.viewControllers.count == 2 && self.playerView && self.isPlaying) {
-        self.isPlaying = NO;
-        self.playerView.playerPushedOrPresented = NO;
-    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     // push出下一级页面时候暂停
-    if (self.navigationController.viewControllers.count == 3 && self.playerView && !self.playerView.isPauseByUser)
-    {
-        self.isPlaying = YES;
-        [self.playerView pause];
-        self.playerView.playerPushedOrPresented = YES;
-    }else{
-        [self.playerView resetPlayer];
-        self.playerView.delegate = nil;
-        self.playerView = nil;
-    }
-    
-
-   
-
-
 }
 
 
@@ -115,9 +96,7 @@
 #pragma mark - ZFPlayerDelegate
 
 - (void)zf_playerBackAction {
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
+   [self.navigationController popViewControllerAnimated:false];
 }
 
 
@@ -131,6 +110,10 @@
  
 }
 
+-(void)zf_playerAlertShow{
+    [self addAlertView];
+}
+
 #pragma mark - Getter
 
 - (ZFPlayerModel *)playerModel {
@@ -140,7 +123,7 @@
         _playerModel.videoURL         = self.videoURL;
         _playerModel.placeholderImage = [UIImage imageNamed:@"loading_bgView1"];
         _playerModel.fatherView       = self.playerFatherView;
-
+        _playerModel.endTime          = self.endTime;
     }
     return _playerModel;
 }

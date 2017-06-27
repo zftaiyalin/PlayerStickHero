@@ -13,4 +13,5 @@
 @property(nonatomic,strong) NSString *videoSize;
 @property(nonatomic,strong) NSString *videotime;
 @property(nonatomic,strong) NSString *videoUrl;
+@property(nonatomic,strong) NSString *videoEndTime;
 @end

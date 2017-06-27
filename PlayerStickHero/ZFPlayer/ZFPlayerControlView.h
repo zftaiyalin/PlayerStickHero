@@ -24,7 +24,8 @@
 #import <UIKit/UIKit.h>
 #import "ASValueTrackingSlider.h"
 #import "ZFPlayer.h"
+#import "ZFPlayerModel.h"
 
 @interface ZFPlayerControlView : UIView 
-
+@property(nonatomic,strong)ZFPlayerModel *viModel;
 @end

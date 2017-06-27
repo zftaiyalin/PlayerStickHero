@@ -988,6 +988,13 @@ static const CGFloat ZFPlayerControlBarAutoFadeOutTimeInterval = 0.35f;
 
 - (void)zf_playerCurrentTime:(NSInteger)currentTime totalTime:(NSInteger)totalTime sliderValue:(CGFloat)value {
     // 当前时长进度progress
+    if (currentTime >= self.viModel.endTime) {
+        if ([self.delegate respondsToSelector:@selector(zf_controlViewAlertShow)]) {
+            [self.delegate zf_controlViewAlertShow];
+        }
+        return;
+       
+    }
     NSInteger proMin = currentTime / 60;//当前秒
     NSInteger proSec = currentTime % 60;//当前分钟
     // duration 总时长
@@ -1005,6 +1012,13 @@ static const CGFloat ZFPlayerControlBarAutoFadeOutTimeInterval = 0.35f;
 }
 
 - (void)zf_playerDraggedTime:(NSInteger)draggedTime totalTime:(NSInteger)totalTime isForward:(BOOL)forawrd hasPreview:(BOOL)preview {
+    if (draggedTime >= self.viModel.endTime) {
+        if ([self.delegate respondsToSelector:@selector(zf_controlViewAlertShow)]) {
+            [self.delegate zf_controlViewAlertShow];
+        }
+        return;
+    }
+    
     // 快进快退时候停止菊花
     [self.activity stopAnimating];
     // 拖拽的时长
