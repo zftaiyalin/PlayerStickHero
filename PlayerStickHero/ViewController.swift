@@ -90,7 +90,7 @@ class ViewController: UIViewController,UIAlertViewDelegate {
     public func alertView(_ alertView: UIAlertView, clickedButtonAt buttonIndex: Int){
         if buttonIndex == 1 {
             
-            let str = "http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=493901993&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8"
+            let str = "http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=1251252305&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8"
             
             UIApplication.shared.openURL(URL.init(string: str)!)
             
