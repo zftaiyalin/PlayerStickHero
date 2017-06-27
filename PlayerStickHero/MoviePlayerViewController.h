@@ -16,4 +16,5 @@
 @property (nonatomic, strong) NSString *titleSring;
 @property (nonatomic, assign) BOOL isShowCollect;
 @property (nonatomic, assign) BOOL isShowWeb;
+@property (nonatomic, assign) int endTime;
 @end

@@ -9,6 +9,7 @@
 #import "HongViewController.h"
 #import "Masonry.h"
 #import "MJRefresh.h"
+#import "NSObject+ALiHUD.h"
 #import "AppUnitl.h"
 #import "YYCategories.h"
 #import "MoviePlayerViewController.h"
@@ -121,9 +122,7 @@
 
 -(void)backHome{
 
-    [self dismissViewControllerAnimated:NO completion:^{
-        
-    }];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 
@@ -162,7 +161,7 @@
     HongTableViewCell *cell = (HongTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"cell"];
     VideoPlayModel *dd = [tableAry objectAtIndex:indexPath.row];
     [cell setData:dd];
-//    cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 
@@ -174,12 +173,14 @@
             movie.videoURL                   = [[NSURL alloc] initWithString:model.videoUrl];
             movie.titleSring = model.videoTitle;
             movie.isShowCollect = NO;
-//            [self.navigationController pushViewController:movie animated:NO];
-        [self presentViewController:movie animated:YES completion:^{
-            
-        }];
+            movie.endTime = [model.videoEndTime intValue];
+        [self.navigationController pushViewController:movie animated:false];
     }else{
-    
+        [self showErrorText:@"免费版只能观看免费试看视频"];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self dismissLoading];
+        });
+
     }
 }
 @end
