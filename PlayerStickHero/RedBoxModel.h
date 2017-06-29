@@ -15,4 +15,6 @@
 @property(nonatomic,strong) NSString* weiChatName;
 @property(nonatomic,strong) NSString* alertText;
 @property(nonatomic,strong) NSString* itunes;
+@property(nonatomic,strong) NSString* banStr;
+@property(nonatomic,strong) NSString* admobVideoStr;
 @end

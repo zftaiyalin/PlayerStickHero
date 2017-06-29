@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F37B80A91EA00436560AD42E58AAC53A"
+               BlueprintIdentifier = "7F3A70CA75661687097DC3A5C2C98D44"
                BuildableName = "Pods_PlayerStickHero.framework"
                BlueprintName = "Pods-PlayerStickHero"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F37B80A91EA00436560AD42E58AAC53A"
+            BlueprintIdentifier = "7F3A70CA75661687097DC3A5C2C98D44"
             BuildableName = "Pods_PlayerStickHero.framework"
             BlueprintName = "Pods-PlayerStickHero"
             ReferencedContainer = "container:Pods.xcodeproj">

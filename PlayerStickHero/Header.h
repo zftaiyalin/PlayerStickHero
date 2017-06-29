@@ -16,4 +16,6 @@
 #import <YYModel/YYModel.h>
 #import "HongViewController.h"
 #import "AppUnitl.h"
+#import "UIViewController+Add.h"
+@import GoogleMobileAds;
 #endif /* Header_h */

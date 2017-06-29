@@ -10,4 +10,5 @@
 #import <UIKit/UIKit.h>
 @interface UIViewController(Add)
 -(void)addAlertView;
+-(void)addBaner;
 @end

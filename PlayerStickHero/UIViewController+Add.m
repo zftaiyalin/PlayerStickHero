@@ -10,6 +10,8 @@
 #import "DaiLuViewController.h"
 #import "YYCategories.h"
 #import "AppUnitl.h"
+@import GoogleMobileAds;
+
 
 @implementation UIViewController(Add)
 -(void)addAlertView{
@@ -43,5 +45,18 @@
     [alertController addAction:archiveAction];
     
     [self presentViewController:alertController animated:YES completion:nil];
+}
+
+-(void)addBaner{
+    
+    GADBannerView *ban = [[GADBannerView alloc]initWithFrame:CGRectMake(0, self.view.height-50, self.view.width, 50)];
+    ban.adUnitID = [AppUnitl sharedManager].ssmodel.appstatus.banStr;
+    ban.rootViewController = self;
+    
+    GADRequest *request = [GADRequest request];
+//    request.testDevices = @[@"fe9239b402756b9539e3beb3a686378d"];
+    [ban loadRequest:request];
+    
+    [self.view addSubview:ban];
 }
 @end
