@@ -18,10 +18,7 @@
 @property (strong, nonatomic) UIView *playerFatherView;
 @property (strong, nonatomic) ZFPlayerView *playerView;
 /** 离开页面时候是否在播放 */
-@property (nonatomic, assign) BOOL isPlaying;
 @property (nonatomic, strong) ZFPlayerModel *playerModel;
-@property (nonatomic, strong) UIView *bottomView;
-@property(nonatomic,strong)UIWebView *webView;
 
 @end
 

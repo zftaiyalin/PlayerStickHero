@@ -17,10 +17,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        UMAnalyticsConfig.sharedInstance().appKey = "59526c8cc62dca2b70000a61"
+        UMAnalyticsConfig.sharedInstance().appKey = "5954ea90f43e484645000622"
         UMAnalyticsConfig.sharedInstance().channelId = "App Store"
         MobClick.start(withConfigure: UMAnalyticsConfig.sharedInstance())
         
+        
+        GADMobileAds.configure(withApplicationID: "ca-app-pub-3676267735536366~6003309732")
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyyMMddHHmmss"
