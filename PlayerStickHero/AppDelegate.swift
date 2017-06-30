@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        UMAnalyticsConfig.sharedInstance().appKey = "592bbcf63eae25316d00206e"
+        UMAnalyticsConfig.sharedInstance().appKey = "59526c8cc62dca2b70000a61"
         UMAnalyticsConfig.sharedInstance().channelId = "App Store"
         MobClick.start(withConfigure: UMAnalyticsConfig.sharedInstance())
         
@@ -39,7 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if content != nil {
             let model = AppModel.yy_model(withJSON: content)
 //            print(model?.alertText!)
-            model?.appstatus.isShow = true
+//            model?.appstatus.isShow = true
             AppUnitl.sharedManager().ssmodel = model
             
         }

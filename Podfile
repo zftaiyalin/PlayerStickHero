@@ -8,4 +8,6 @@ pod 'YYModel'
 pod 'UMengAnalytics'
 pod 'SnapKit'
 pod 'SVProgressHUD'
+pod 'Firebase/Core'
+pod 'Firebase/AdMob'
 end

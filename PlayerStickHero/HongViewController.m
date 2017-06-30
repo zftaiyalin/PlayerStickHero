@@ -14,10 +14,15 @@
 #import "YYCategories.h"
 #import "MoviePlayerViewController.h"
 #import "VideoPlayModel.h"
-@interface HongViewController (){
+@import GoogleMobileAds;
+
+
+@interface HongViewController ()<GADRewardBasedVideoAdDelegate>{
 
     NSMutableArray *tableAry;
     BOOL isLoad;
+    BOOL isRequestVideo;
+    VideoPlayModel *mainModel;
 }
 
 @end
@@ -26,6 +31,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [GADRewardBasedVideoAd sharedInstance].delegate = self;
+    
     tableAry = [NSMutableArray array];
     [self reFreshVideoModel];
 
@@ -86,6 +94,16 @@
         make.left.and.right.bottom.equalTo(self.view);
         make.top.equalTo(self.view).offset(64);
     }];
+    
+    if (![[GADRewardBasedVideoAd sharedInstance] isReady]) {
+        [self requestRewardedVideo];
+    }
+}
+
+- (void)requestRewardedVideo {
+    GADRequest *request = [GADRequest request];
+    [[GADRewardBasedVideoAd sharedInstance] loadRequest:request
+                                           withAdUnitID:@"ca-app-pub-3676267735536366/3810493335"];
 }
 
 -(void)reFreshVideoModel{
@@ -110,7 +128,10 @@
         }
         
     }else{
-        
+        [self showErrorText:@"获取更多视频请下载VIP版本"];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self dismissLoading];
+        });
     }
     
     [self.tableView.mj_header endRefreshing];
@@ -167,14 +188,16 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    VideoPlayModel *model = [tableAry objectAtIndex:indexPath.row];
-    if (model.videoUrl.length > 0) {
-            MoviePlayerViewController *movie = [[MoviePlayerViewController alloc]init];
-            movie.videoURL                   = [[NSURL alloc] initWithString:model.videoUrl];
-            movie.titleSring = model.videoTitle;
-            movie.isShowCollect = NO;
-            movie.endTime = [model.videoEndTime intValue];
-        [self.navigationController pushViewController:movie animated:false];
+    mainModel = [tableAry objectAtIndex:indexPath.row];
+    if (mainModel.videoUrl.length > 0) {
+        if ([[GADRewardBasedVideoAd sharedInstance] isReady]) {
+            [[GADRewardBasedVideoAd sharedInstance] presentFromRootViewController:self];
+        }else{
+            [self requestRewardedVideo];
+            isRequestVideo = YES;
+            [self showText:@"观看广告方能观看视频"];
+        }
+        
     }else{
         [self showErrorText:@"免费版只能观看免费试看视频"];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -183,4 +206,73 @@
 
     }
 }
+
+
+
+#pragma mark GADRewardBasedVideoAdDelegate implementation
+
+- (void)rewardBasedVideoAdDidReceiveAd:(GADRewardBasedVideoAd *)rewardBasedVideoAd {
+    NSLog(@"Reward based video ad is received.");
+    if (isRequestVideo) {
+        isRequestVideo = NO;
+        [self dismissLoading];
+        [[GADRewardBasedVideoAd sharedInstance] presentFromRootViewController:self];
+    }
+    
+}
+
+- (void)rewardBasedVideoAdDidOpen:(GADRewardBasedVideoAd *)rewardBasedVideoAd {
+    NSLog(@"Opened reward based video ad.");
+}
+
+- (void)rewardBasedVideoAdDidStartPlaying:(GADRewardBasedVideoAd *)rewardBasedVideoAd {
+    NSLog(@"Reward based video ad started playing.");
+    NSLog(@"admob奖励视频开始播放");
+}
+
+- (void)rewardBasedVideoAdDidClose:(GADRewardBasedVideoAd *)rewardBasedVideoAd {
+    NSLog(@"Reward based video ad is closed.");
+    NSLog(@"中途关闭admob奖励视频");
+}
+
+- (void)rewardBasedVideoAd:(GADRewardBasedVideoAd *)rewardBasedVideoAd
+   didRewardUserWithReward:(GADAdReward *)reward {
+    NSLog(@"有效的播放admob奖励视频");
+    
+    MoviePlayerViewController *movie = [[MoviePlayerViewController alloc]init];
+    movie.videoURL                   = [[NSURL alloc] initWithString:mainModel.videoUrl];
+    movie.titleSring = mainModel.videoTitle;
+    movie.isShowCollect = NO;
+    movie.endTime = [mainModel.videoEndTime intValue];
+    [self.navigationController pushViewController:movie animated:false];
+    
+}
+
+- (void)rewardBasedVideoAdWillLeaveApplication:(GADRewardBasedVideoAd *)rewardBasedVideoAd {
+    NSLog(@"Reward based video ad will leave application.");
+    NSLog(@"点击admo奖励视频准备离开app");
+}
+
+- (void)rewardBasedVideoAd:(GADRewardBasedVideoAd *)rewardBasedVideoAd
+    didFailToLoadWithError:(NSError *)error {
+    NSLog(@"Reward based video ad failed to load.");
+    NSLog(@"admob奖励视频加载失败");
+    if (isRequestVideo) {
+        isRequestVideo = NO;
+        [self dismissLoading];
+        
+        [self showErrorText:@"获取广告失败"];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self dismissLoading];
+            MoviePlayerViewController *movie = [[MoviePlayerViewController alloc]init];
+            movie.videoURL                   = [[NSURL alloc] initWithString:mainModel.videoUrl];
+            movie.titleSring = mainModel.videoTitle;
+            movie.isShowCollect = NO;
+            movie.endTime = [mainModel.videoEndTime intValue];
+            [self.navigationController pushViewController:movie animated:false];
+        });
+    }
+}
+
+
 @end

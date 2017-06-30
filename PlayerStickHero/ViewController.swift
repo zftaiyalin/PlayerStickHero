@@ -64,8 +64,10 @@ class ViewController: UIViewController,UIAlertViewDelegate {
                 make.top.equalTo(button.snp.bottom).offset(20)
             }
         }
-  
+
         
+        self.addBaner()
+
     }
     
     func pushLao() {
