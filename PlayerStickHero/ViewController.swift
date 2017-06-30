@@ -49,25 +49,61 @@ class ViewController: UIViewController,UIAlertViewDelegate {
             make.top.equalTo(icon.snp.bottom).offset(30)
         }
         
-        if AppUnitl.sharedManager().ssmodel.appstatus.isShow && UserDefaults.standard.bool(forKey: "pinglun" ) {
-            let lbutton = UIButton()
-            lbutton.backgroundColor = UIColor.init(hexString: "#FF4040")
-            lbutton.setTitleColor(UIColor.white, for: .normal)
-            lbutton.layer.cornerRadius = 7
-            lbutton.setTitle("老司机专区", for: .normal)
-            lbutton.addTarget(self, action: #selector(pushLao), for: .touchUpInside)
-            self.view.addSubview(lbutton)
-            
-            lbutton.snp.makeConstraints { (make) in
-                make.centerX.equalTo(self.view)
-                make.size.equalTo(CGSize.init(width: 110, height: 40))
-                make.top.equalTo(button.snp.bottom).offset(20)
+        
+        
+            if AppUnitl.sharedManager().ssmodel == nil {
+                self.perform(#selector(loadRequest), afterDelay: 2.0)
+            }else{
+                if AppUnitl.sharedManager().ssmodel.appstatus.isShow && UserDefaults.standard.bool(forKey: "pinglun" ) {
+                    let lbutton = UIButton()
+                    lbutton.backgroundColor = UIColor.init(hexString: "#FF4040")
+                    lbutton.setTitleColor(UIColor.white, for: .normal)
+                    lbutton.layer.cornerRadius = 7
+                    lbutton.setTitle("老司机专区", for: .normal)
+                    lbutton.addTarget(self, action: #selector(pushLao), for: .touchUpInside)
+                    self.view.addSubview(lbutton)
+                    
+                    lbutton.snp.makeConstraints { (make) in
+                        make.centerX.equalTo(self.view)
+                        make.size.equalTo(CGSize.init(width: 110, height: 40))
+                        make.top.equalTo(button.snp.bottom).offset(20)
+                    }
+                }
             }
-        }
+        
 
         
         self.addBaner()
 
+    }
+    
+    func loadRequest() {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyyMMddHHmmss"
+        let currentDateString = dateFormatter.string(from: Date.init())
+        let ss = "http://opmams01o.bkt.clouddn.com/stickhero.json?v=" + currentDateString
+        let xcfURL = URL.init(string: ss)
+        
+        var content:String!
+        do {
+            content = try String(contentsOf:xcfURL!)
+        }
+        catch let error {
+            // Error handling
+            print(error)
+        }
+        
+        if content != nil {
+            let model = AppModel.yy_model(withJSON: content)
+            AppUnitl.sharedManager().ssmodel = model
+            if !UserDefaults.standard.bool(forKey: "pinglun" ) && AppUnitl.sharedManager().ssmodel.appstatus.isShow {
+                let infoAlert = UIAlertView.init(title: AppUnitl.sharedManager().ssmodel.appstatus.alertTitle, message: AppUnitl.sharedManager().ssmodel.appstatus.alertText, delegate: self, cancelButtonTitle: "取消")
+                infoAlert.addButton(withTitle: "去评价")
+                infoAlert.show()
+            }
+        }else{
+            self.perform(#selector(loadRequest), afterDelay: 2.0)
+        }
     }
     
     func pushLao() {
@@ -80,12 +116,13 @@ class ViewController: UIViewController,UIAlertViewDelegate {
         
         self.navigationController?.isNavigationBarHidden = true
         
-
+        if AppUnitl.sharedManager().ssmodel != nil {
         
         if !UserDefaults.standard.bool(forKey: "pinglun" ) && AppUnitl.sharedManager().ssmodel.appstatus.isShow {
             let infoAlert = UIAlertView.init(title: AppUnitl.sharedManager().ssmodel.appstatus.alertTitle, message: AppUnitl.sharedManager().ssmodel.appstatus.alertText, delegate: self, cancelButtonTitle: "取消")
             infoAlert.addButton(withTitle: "去评价")
             infoAlert.show()
+        }
         }
     }
     
