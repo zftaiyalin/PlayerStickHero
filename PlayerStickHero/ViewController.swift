@@ -10,6 +10,8 @@ import UIKit
 
 
 class ViewController: UIViewController,UIAlertViewDelegate {
+    
+    var button: UIButton! = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +37,7 @@ class ViewController: UIViewController,UIAlertViewDelegate {
             make.top.equalTo(self.view.snp.centerY).offset(-100)
         }
         
-        let button = UIButton()
+        button = UIButton()
         button.backgroundColor = UIColor.init(hexString: "#FF4040")
         button.setTitleColor(UIColor.white, for: .normal)
         button.layer.cornerRadius = 7
@@ -118,11 +120,14 @@ class ViewController: UIViewController,UIAlertViewDelegate {
         
         if AppUnitl.sharedManager().ssmodel != nil {
         
-        if !UserDefaults.standard.bool(forKey: "pinglun" ) && AppUnitl.sharedManager().ssmodel.appstatus.isShow {
+            if !UserDefaults.standard.bool(forKey: "pinglun" ) && AppUnitl.sharedManager().ssmodel.appstatus.isShow {
             let infoAlert = UIAlertView.init(title: AppUnitl.sharedManager().ssmodel.appstatus.alertTitle, message: AppUnitl.sharedManager().ssmodel.appstatus.alertText, delegate: self, cancelButtonTitle: "取消")
             infoAlert.addButton(withTitle: "去评价")
             infoAlert.show()
-        }
+            }
+            
+        
+            
         }
     }
     
@@ -134,6 +139,20 @@ class ViewController: UIViewController,UIAlertViewDelegate {
             UIApplication.shared.openURL(URL.init(string: str)!)
             
             UserDefaults.standard.set(true, forKey: "pinglun")
+            
+            let lbutton = UIButton()
+            lbutton.backgroundColor = UIColor.init(hexString: "#FF4040")
+            lbutton.setTitleColor(UIColor.white, for: .normal)
+            lbutton.layer.cornerRadius = 7
+            lbutton.setTitle("老司机专区", for: .normal)
+            lbutton.addTarget(self, action: #selector(pushLao), for: .touchUpInside)
+            self.view.addSubview(lbutton)
+            
+            lbutton.snp.makeConstraints { (make) in
+                make.centerX.equalTo(self.view)
+                make.size.equalTo(CGSize.init(width: 110, height: 40))
+                make.top.equalTo(button.snp.bottom).offset(20)
+            }
             
         }
     }

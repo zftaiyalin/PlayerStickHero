@@ -41,7 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if content != nil {
             let model = AppModel.yy_model(withJSON: content)
 //            print(model?.alertText!)
-//            model?.appstatus.isShow = true
+            model?.appstatus.isShow = true
             AppUnitl.sharedManager().ssmodel = model
             
         }
